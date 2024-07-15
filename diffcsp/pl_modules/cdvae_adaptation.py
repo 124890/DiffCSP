@@ -16,8 +16,7 @@ from diffcsp.common.utils import PROJECT_ROOT
 from diffcsp.common.data_utils import (
     EPSILON, cart_to_frac_coords, mard, lengths_angles_to_volume, lattice_params_to_matrix_torch,
     frac_to_cart_coords, min_distance_sqr_pbc)
-from diffcsp.pl_modules.embeddings import MAX_ATOMIC_NUM
-from diffcsp.pl_modules.embeddings import KHOT_EMBEDDINGS
+MAX_ATOMIC_NUM=100
 
 from scipy.optimize import linear_sum_assignment
 
@@ -137,7 +136,7 @@ class CrystGNN_Supervise(BaseModule):
         return log_dict, loss
 
 
-class diffcsp(BaseModule):
+class CDVAE(BaseModule):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
@@ -183,9 +182,6 @@ class diffcsp(BaseModule):
 
         self.type_sigmas = nn.Parameter(type_sigmas, requires_grad=False)
 
-        self.embedding = torch.zeros(100, 92)
-        for i in range(100):
-            self.embedding[i] = torch.tensor(KHOT_EMBEDDINGS[i + 1])
 
         # obtain from datamodule.
         self.lattice_scaler = None

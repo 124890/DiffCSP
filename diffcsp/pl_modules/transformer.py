@@ -21,8 +21,7 @@ from diffcsp.common.utils import PROJECT_ROOT
 from diffcsp.common.data_utils import (
     EPSILON, cart_to_frac_coords, mard, lengths_angles_to_volume,
     frac_to_cart_coords, min_distance_sqr_pbc)
-from diffcsp.pl_modules.embeddings import MAX_ATOMIC_NUM, MAX_SPACE_GROUP_NUM
-from diffcsp.pl_modules.embeddings import KHOT_EMBEDDINGS
+MAX_ATOMIC_NUM=100
 
 
 
