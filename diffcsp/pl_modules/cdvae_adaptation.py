@@ -18,7 +18,6 @@ from diffcsp.common.data_utils import (
     frac_to_cart_coords, min_distance_sqr_pbc)
 MAX_ATOMIC_NUM=100
 
-from scipy.optimize import linear_sum_assignment
 
 
 def build_mlp(in_dim, hidden_dim, fc_num_layers, out_dim):
@@ -317,8 +316,8 @@ class CDVAE(BaseModule):
 
         return output_dict
 
-    def sample(self, batch, diff_ratio = 1.0, step_lr=1e-4):
-        ld_kwargs = SimpleNamespace(n_step_each=100,
+    def sample(self, batch, diff_ratio = 1.0, step_lr=1e-4, n_step_each=100):
+        ld_kwargs = SimpleNamespace(n_step_each=n_step_each,
                                     step_lr=step_lr,
                                     min_sigma=0,
                                     save_traj=True,
