@@ -32,11 +32,6 @@ WABDB_DIR: the absolute path to save wabdb outputs
 python diffcsp/run.py data=<dataset> expname=<expname> model=cdvae_adaptation
 ```
 
-For the Ab Initio Generation task
-
-```
-python diffcsp/run.py data=<dataset> model=diffusion_w_type expname=<expname>
-```
 
 The ``<dataset>`` tag can be selected from perov_5, mp_20, mpts_52 and carbon_24, and the ``<expname>`` tag can be an arbitrary name to identify each experiment. 
 
