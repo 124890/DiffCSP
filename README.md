@@ -1,12 +1,11 @@
 # Crystal Structure Prediction by Joint Equivariant Diffusion (NeurIPS 2023)
 
-Implementation codes for Crystal Structure Prediction by Joint Equivariant Diffusion (DiffCSP). 
+Adapted CDVAE in DiffCSP paper. For more advanced CDVAE variant for the CSP task, we highly recommand [cond-CDVAE](https://github.com/ixsluo/cond-cdvae). 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jiaor17/DiffCSP/blob/main/LICENSE)   [**[Paper]**](https://arxiv.org/abs/2309.04475)
 
-![Overview](fig/overview.png "Overview")
+![Overview](fig/cdvae_adaptation.png "Overview")
 
-![Demo](fig/demo.gif "Demo")
 
 ### Dependencies and Setup
 
@@ -28,10 +27,9 @@ WABDB_DIR: the absolute path to save wabdb outputs
 
 ### Training
 
-For the CSP task
 
 ```
-python diffcsp/run.py data=<dataset> expname=<expname>
+python diffcsp/run.py data=<dataset> expname=<expname> model=cdvae_adaptation
 ```
 
 For the Ab Initio Generation task
@@ -40,7 +38,7 @@ For the Ab Initio Generation task
 python diffcsp/run.py data=<dataset> model=diffusion_w_type expname=<expname>
 ```
 
-The ``<dataset>`` tag can be selected from perov_5, mp_20, mpts_52 and carbon_24, and the ``<expname>`` tag can be an arbitrary name to identify each experiment. Pre-trained checkpoints are provided [here](https://drive.google.com/drive/folders/11WOc9lTZN4hkIY7SKLCIrbsTMGy9TsoW?usp=sharing).
+The ``<dataset>`` tag can be selected from perov_5, mp_20, mpts_52 and carbon_24, and the ``<expname>`` tag can be an arbitrary name to identify each experiment. 
 
 ### Evaluation
 
@@ -60,23 +58,6 @@ python scripts/evaluate.py --model_path <model_path> --dataset <dataset> --num_e
 python scripts/compute_metrics.py --root_path <model_path> --tasks csp --gt_file data/<dataset>/test.csv --multi_eval
 ```
 
-#### Ab initio generation
-
-```
-python scripts/generation.py --model_path <model_path> --dataset <dataset>
-python scripts/compute_metrics.py --root_path <model_path> --tasks gen --gt_file data/<dataset>/test.csv
-```
-
-
-#### Sample from arbitrary composition
-
-```
-python scripts/sample.py --model_path <model_path> --save_path <save_path> --formula <formula> --num_evals <num_evals>
-```
-
-#### Property Optimization
-
-Details are provided in `tutorial/optimization.md`.
 
 ### Acknowledgments
 
